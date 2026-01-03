@@ -726,10 +726,10 @@ body {
 
   /* icons inline with labels */
   .links { width: 100% !important; gap: 12px !important; align-items: center !important; justify-content: center !important; }
-  .link-icon-btn { width: auto !important; flex-direction: row !important; padding: 6px 10px !important; justify-content: flex-start !important; align-items: center !important; gap: 12px; }
-  .icon-circle { width: 48px !important; height: 48px !important; }
-  .icon-circle .link-icon { width: 28px !important; height: 28px !important; }
-  .link-label { font-size: 0.96rem !important; margin-top: 0 !important; margin-left: 8px !important; }
+  .link-icon-btn { width: 100% !important; flex-direction: column !important; padding: 8px 10px !important; justify-content: center !important; align-items: center !important; gap: 8px !important; }
+  .icon-circle { width: 56px !important; height: 56px !important; margin-right: 0 !important; margin-bottom: 6px !important; }
+  .icon-circle .link-icon { width: 36px !important; height: 36px !important; }
+  .link-label { font-size: 1.02rem !important; margin: 0 !important; margin-left: 0 !important; margin-top: 6px !important; text-align: center !important; }
 
   /* remove frosted blur on link buttons for mobile */
   .links a, .links .link-icon-btn { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: transparent !important; }
@@ -755,11 +755,11 @@ body {
 /* Final mobile overrides (strong) — make each link a full-width row with icon on the left */
 @media (max-width: 520px) {
   .links { flex-direction: column !important; gap: 10px !important; align-items: stretch !important; width: 100% !important; }
-  .link-icon-btn { display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; width: 100% !important; padding: 10px 12px !important; gap: 12px !important; border-radius: 10px !important; background: transparent !important; }
+  .link-icon-btn { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; width: 100% !important; padding: 10px 12px !important; gap: 10px !important; border-radius: 10px !important; background: transparent !important; }
   .links a { display: block !important; width: 100% !important; box-sizing: border-box !important; }
-  .icon-circle { width: 48px !important; height: 48px !important; border-radius: 8px !important; margin-right: 8px !important; }
-  .icon-circle .link-icon { width: 28px !important; height: 28px !important; }
-  .link-label { font-size: 0.98rem !important; margin: 0 !important; margin-left: 6px !important; text-align: left !important; color: #ffffff !important; }
+  .icon-circle { width: 56px !important; height: 56px !important; border-radius: 50% !important; margin: 0 0 8px 0 !important; }
+  .icon-circle .link-icon { width: 36px !important; height: 36px !important; }
+  .link-label { font-size: 1.0rem !important; margin: 0 !important; margin-left: 0 !important; text-align: center !important; color: #ffffff !important; }
   .center-content { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
 }
 
