@@ -713,6 +713,24 @@ body {
   padding: 0 !important;
 }
 
+/* Strong mobile layout fixes: stack and center avatar, text and icons cleanly on phones */
+@media (max-width: 520px) {
+  .center-content { padding: 14px !important; max-width: 92vw; width: 100%; box-sizing: border-box; }
+  .center-content::before { display: none !important; }
+  .avatar { width: 110px !important; height: 110px !important; margin: 0 auto 10px !important; display: block; }
+  .name-wrap { align-items: center !important; text-align: center !important; }
+  .light-label { margin: 0 !important; padding: 0 !important; }
+  .owner-desc { margin-top: 6px !important; padding: 0 !important; }
+  .about-list { gap: 6px !important; align-items: center; }
+  .about-list .role-title, .about-list .skills { padding: 0 !important; }
+
+  .links { width: 100% !important; gap: 12px !important; align-items: center !important; justify-content: center !important; }
+  .link-icon-btn { width: auto !important; flex-direction: column !important; padding: 6px 0 !important; justify-content: center !important; align-items: center !important; }
+  .icon-circle { width: 64px !important; height: 64px !important; }
+  .icon-circle .link-icon { width: 40px !important; height: 40px !important; }
+  .link-label { font-size: 0.96rem !important; margin-top: 6px !important; }
+}
+
 /* Override remaining red color rules — use demonic developer color or white */
 .about-list .role-title,
 .about-list .skills,
