@@ -751,3 +751,14 @@ body {
 }
 
 .links a:focus { outline-color: rgba(255,90,70,0.12) !important; }
+
+/* Final mobile overrides (strong) — make each link a full-width row with icon on the left */
+@media (max-width: 520px) {
+  .links { flex-direction: column !important; gap: 10px !important; align-items: stretch !important; width: 100% !important; }
+  .link-icon-btn { display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; width: 100% !important; padding: 10px 12px !important; gap: 12px !important; border-radius: 10px !important; background: transparent !important; }
+  .links a { display: block !important; width: 100% !important; box-sizing: border-box !important; }
+  .icon-circle { width: 48px !important; height: 48px !important; border-radius: 8px !important; margin-right: 8px !important; }
+  .icon-circle .link-icon { width: 28px !important; height: 28px !important; }
+  .link-label { font-size: 0.98rem !important; margin: 0 !important; margin-left: 6px !important; text-align: left !important; color: #ffffff !important; }
+  .center-content { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+}
