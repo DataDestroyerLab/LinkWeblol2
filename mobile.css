@@ -2,23 +2,23 @@
 /* Loaded only when viewport is <= 520px to avoid conflicts with desktop styles */
 @media (max-width: 520px) {
   /* Keep UI visually centered but make link rows left-aligned inside the row */
-  .ui { justify-content: center !important; align-items: flex-start !important; padding-top: 14px !important; }
+  /* center everything vertically and horizontally on tall/high-res phones */
+  .ui { justify-content: center !important; align-items: center !important; min-height: 100vh !important; padding-top: 0 !important; }
   .center-content { width: min(92vw, 560px) !important; max-width: 92vw !important; margin: 0 auto !important; padding: 12px !important; box-sizing: border-box !important; text-align: center !important; }
 
   /* Link list becomes full-width stack */
-  .links { display: flex !important; flex-direction: column !important; gap: 10px !important; align-items: stretch !important; width: 100% !important; }
+  .links { display: flex !important; flex-direction: column !important; gap: 10px !important; align-items: center !important; width: 100% !important; }
 
   /* Each link is a left-aligned row: icon at left, label to the right */
   .link-icon-btn {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    justify-content: flex-start !important;
+    justify-content: center !important; /* center the row itself */
     gap: 8px !important;
-    width: 92% !important;
-    max-width: 480px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    width: auto !important; /* allow content to size naturally then center with margin */
+    max-width: 92% !important;
+    margin: 0 auto !important;
     padding: 10px 14px !important;
     box-sizing: border-box !important;
     border-radius: 10px !important;
@@ -33,15 +33,15 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    margin: 0 6px 0 0 !important; /* small right gap so icon sits next to text */
+    margin: 0 !important;
   }
   .icon-circle .link-icon { width: 28px !important; height: 28px !important; }
 
   .link-label {
-    flex: 1 1 auto !important;
+    flex: 0 1 auto !important;
     text-align: left !important;
     margin: 0 !important;
-    margin-left: 6px !important;
+    margin-left: 8px !important;
     font-size: 1.02rem !important;
     color: #ffffff !important;
   }
@@ -59,4 +59,39 @@
 
 /* Small horizontal inset so rows aren't flush to the absolute left edge on some devices */
 .links { padding-left: 6px !important; padding-right: 6px !important; }
+
+  /* ensure the row content is centered in wide/hi-dpi viewports */
+  .link-icon-btn { transform: translateZ(0); }
+
+/* Platform-specific fixes */
+/* iOS safe-area (notches / rounded corners) */
+@supports (padding: max(0px)) {
+  .ui, .center-content {
+    padding-left: max(12px, env(safe-area-inset-left)) !important;
+    padding-right: max(12px, env(safe-area-inset-right)) !important;
+  }
+  .center-content {
+    padding-top: calc(12px + env(safe-area-inset-top)) !important;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* iOS-specific feature detection: improve touch feel on Safari/iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  html, body { -webkit-text-size-adjust: 100% !important; }
+  .links { -webkit-overflow-scrolling: touch; }
+  .link-icon-btn { -webkit-tap-highlight-color: transparent !important; }
+}
+
+/* Android-specific tweaks (non-iOS) */
+@supports not (-webkit-overflow-scrolling: touch) {
+  html, body { -webkit-text-size-adjust: 100% !important; }
+  .link-icon-btn { touch-action: manipulation; }
+}
+
+/* Force consistent centering on very tall or high-res screens */
+@media (max-width: 520px) and (min-device-height: 700px) {
+  .ui { min-height: 100vh !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+  .center-content { transform: none !important; }
+}
 
