@@ -104,4 +104,19 @@
 .mobile-force .icon-circle .link-icon { width: 28px !important; height: 28px !important; }
 .mobile-force .link-label { flex: 0 1 auto !important; text-align: left !important; margin: 0 !important; margin-left: 6px !important; font-size: 1.02rem !important; color: #ffffff !important; }
 
+/* Strong anchor override: prevent existing .links a rules forcing full-width */
+.mobile-force .links a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  max-width: 92% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  box-sizing: border-box !important;
+}
+
+
 
