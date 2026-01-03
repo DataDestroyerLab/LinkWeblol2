@@ -1,0 +1,802 @@
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.link-icon-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100px;
+  height: auto;
+  text-decoration: none;
+  color: var(--evil-red);
+  background: transparent !important;
+  border: none !important;
+  border-radius: 8px;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 220ms ease;
+  box-shadow: none !important;
+}
+
+.icon-circle {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  box-shadow: none;
+}
+.icon-circle .link-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
+}
+
+.link-label {
+  font-size: 0.78rem;
+  text-align: center;
+  display: block;
+  color: #ffffff;
+  margin-top: 6px;
+  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255,90,70,0.6), 0 0 18px rgba(200,40,40,0.12);
+}
+
+/* developer-colored label for specific links */
+.link-label.dev-label {
+  color: #ffffff !important;
+  text-shadow: 0 0 8px rgba(255,90,70,0.45) !important;
+}
+
+.link-icon-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 18px 48px rgba(255,40,40,0.08); }
+
+/* desktop: show icons inline */
+@media (min-width: 520px) {
+  .links { flex-direction: row; width: 100%; }
+  .link-icon-btn { margin: 0; }
+}
+
+/* mobile tweak: slightly larger touch targets */
+@media (max-width: 520px) {
+  .link-icon-btn { width: 86%; height: auto; flex-direction: column; padding: 10px 12px; justify-content: center; border-radius: 12px; }
+  .icon-circle { width: 56px; height: 56px; }
+  .icon-circle .link-icon { width: 36px; height: 36px; }
+  .link-label { font-size: 0.95rem; margin-top: 8px; }
+}
+
+/* Fullscreen tap overlay */
+.tap-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000; /* solid black until entry */
+  backdrop-filter: none;
+}
+.tap-inner { text-align: center; color: var(--evil-red); }
+.tap-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  padding: 18px 28px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.7), 0 0 20px rgba(255,40,40,0.08) inset;
+}
+.tap-sub { margin-top: 8px; font-size: 0.85rem; color: rgba(255,200,200,0.9); }
+
+/* VIDEO BACKGROUND */
+.video-layer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Fractal engine removed */
+
+/* UI CENTER */
+.ui {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* AVATAR */
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 0 25px rgba(160,140,255,0.35);
+  margin-bottom: 15px;
+}
+
+/* Avatar aura wrapper and blood-diamond particles */
+.avatar-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.avatar-wrap::before { display: none; }
+.avatar-wrap::after {
+  /* subtle host behind avatar kept minimal so frosted center is primary */
+  display: none;
+}
+.avatar { position: relative; z-index: 2; display: block; }
+
+.avatar-aura { display: none; }
+
+
+/* NAME */
+.name {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #e8e4ff;
+  text-shadow:
+    0 0 10px rgba(160,140,255,0.45),
+    0 0 25px rgba(120,90,255,0.35);
+  margin-bottom: 25px;
+}
+
+/* Music player styles */
+.music-player {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.btn-music {
+  background: linear-gradient(90deg, rgba(140,120,255,0.12), rgba(0,255,246,0.06));
+  color: #fff;
+  border: 1px solid rgba(140,120,255,0.35);
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+.music-embed {
+  width: 560px;
+  height: 315px;
+  max-width: 92vw;
+  background: transparent;
+  overflow: hidden;
+  border-radius: 8px;
+  display: none;
+}
+.music-embed[aria-hidden="false"] { display:block; }
+.music-embed iframe { width: 100%; height: 100%; border: 0; }
+.music-link { font-size: 0.85rem; color: rgba(255,255,255,0.9); opacity: 0.9; text-decoration: underline; }
+
+/* hint shown when autoplay is blocked */
+.music-hint {
+  font-size: 0.85rem;
+  color: rgba(220,220,230,0.95);
+  opacity: 0.9;
+}
+
+/* Debug controls */
+.music-controls {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+  width: 320px;
+  max-width: 92vw;
+}
+.music-controls label { font-size: 0.85rem; color: rgba(220,220,230,0.9); }
+.music-controls input[type="range"] { width: 100%; }
+.music-progress { height: 8px; background: rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden; cursor: pointer; }
+.music-progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--neon-primary), var(--neon-accent)); transition: width 150ms linear; }
+.music-status { font-size: 0.85rem; color: rgba(200,200,210,0.9); }
+
+/* Neon theme additions (fits video background) */
+:root {
+  --neon-primary: #8c6cff;
+  --neon-accent: #00fff6;
+}
+
+.center-content {
+  /* frosted central panel to improve readability */
+  background: rgba(12,12,14,0.62);
+  padding: 26px 34px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.62), 0 4px 18px rgba(255,40,40,0.03) inset;
+  border: 1px solid rgba(255,255,255,0.03);
+  background-clip: border-box;
+  overflow: visible;
+  position: relative;
+}
+
+/* Soft halo around the centered UI for a smooth blurred edge */
+.center-content::before {
+  /* halo removed */
+  display: none;
+}
+
+/* Optional outer soft outline to smooth edges on darker backgrounds */
+.center-content::after {
+  display: none;
+}
+
+.name {
+  color: var(--neon-primary);
+  text-shadow:
+    0 0 6px rgba(140,100,255,0.9),
+    0 0 18px rgba(140,100,255,0.6),
+    0 0 40px rgba(0,255,246,0.12);
+  animation: neonPulse 3.5s infinite, neonFlicker 6s infinite;
+
+.name-wrap { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.light-label {
+  font-size: 0.9rem;
+  color: rgba(255,200,200,0.95);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.95;
+  text-shadow: 0 0 6px rgba(255,80,80,0.6);
+  transform: translateY(-4px);
+}
+
+.owner-desc {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: rgba(245,210,210,0.95);
+  opacity: 0.95;
+  letter-spacing: 0.6px;
+  font-family: "Cinzel", "Garamond", "Georgia", serif;
+  font-weight: 500;
+  text-transform: none;
+}
+
+.about-me {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: rgba(235,190,190,0.9);
+  opacity: 0.95;
+  letter-spacing: 0.4px;
+  font-family: "Cinzel", "Georgia", serif;
+  font-weight: 500;
+}
+
+/* Styles for the compact About list */
+.about-list { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.about-list .role-title { font-family: "Cinzel", Georgia, serif; font-weight: 700; font-size: 1rem; color: var(--evil-red) !important; padding: 6px 10px; background: rgba(0,0,0,0.55); border-radius: 8px; }
+.about-list .skills { font-family: "Georgia", serif; font-weight: 500; font-size: 0.95rem; color: rgba(255,100,100,0.95); padding: 4px 10px; border-radius: 6px; background: rgba(0,0,0,0.45); }
+
+/* Improve readability: dark backplates and subtle strokes */
+.light-label, .owner-desc, .about-me {
+  background: transparent;
+  padding: 4px 8px;
+  display: inline-block;
+  border: none;
+  text-shadow: 0 0 10px rgba(255,40,40,0.6);
+}
+
+/* Make links easier to read against busy background */
+.links a {
+  background: linear-gradient(180deg, rgba(18,12,12,0.28), rgba(12,8,8,0.18)) !important;
+  backdrop-filter: blur(6px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(6px) saturate(120%) !important;
+  color: var(--evil-red) !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+  -webkit-text-stroke: 0.1px rgba(0,0,0,0.85);
+  text-shadow: 0 2px 0 rgba(0,0,0,0.7);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 220ms ease;
+}
+
+/* Override visual backplates for our inline icon buttons */
+.links .link-icon-btn { background: transparent !important; border: none !important; box-shadow: none !important; padding: 4px 6px; }
+
+/* Slightly increase contrast for status/hint text */
+.music-hint, .music-status {
+  background: rgba(0,0,0,0.55);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+}
+
+.avatar {
+  box-shadow: 0 0 30px rgba(140,120,255,0.22);
+  border: 2px solid rgba(140,120,255,0.18);
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+.avatar:hover {
+  box-shadow: 0 0 60px rgba(140,120,255,0.6), 0 0 100px rgba(0,255,246,0.12);
+  transform: translateY(-4px);
+}
+
+/* Avatar breathing animation */
+.avatar {
+  will-change: transform, box-shadow;
+  /* breathing animation disabled (avatar already animates) */
+}
+
+/* breathe keyframes removed — animation intentionally disabled */
+
+/* Neon flicker (irregular subtle opacity/glow changes) */
+@keyframes neonFlicker {
+  0% { opacity: 1; filter: drop-shadow(0 0 6px rgba(140,100,255,0.9)); }
+  6% { opacity: 0.92; filter: drop-shadow(0 0 4px rgba(140,100,255,0.7)); }
+  12% { opacity: 1; filter: drop-shadow(0 0 12px rgba(140,100,255,1)); }
+  28% { opacity: 0.96; filter: drop-shadow(0 0 6px rgba(140,100,255,0.85)); }
+  35% { opacity: 1; filter: drop-shadow(0 0 18px rgba(0,255,246,0.15)); }
+  52% { opacity: 0.94; filter: drop-shadow(0 0 5px rgba(140,100,255,0.6)); }
+  70% { opacity: 1; filter: drop-shadow(0 0 14px rgba(140,100,255,0.9)); }
+  85% { opacity: 0.97; filter: drop-shadow(0 0 8px rgba(140,100,255,0.75)); }
+  100% { opacity: 1; filter: drop-shadow(0 0 12px rgba(140,100,255,1)); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .name, .avatar, .links a { animation: none !important; transition: none !important; }
+}
+
+.links a {
+  transition: box-shadow 200ms ease, transform 140ms ease, background 200ms ease;
+}
+.links a:hover {
+  box-shadow: 0 0 18px rgba(140,120,255,0.45), inset 0 0 8px rgba(255,255,255,0.02);
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, rgba(140,120,255,0.12), rgba(0,255,246,0.06));
+  border-color: rgba(140,120,255,0.6);
+}
+
+@keyframes neonPulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(140,100,255,0.9), 0 0 18px rgba(140,100,255,0.6); }
+  50% { text-shadow: 0 0 12px rgba(140,100,255,1), 0 0 30px rgba(0,255,246,0.18); }
+}
+
+/* Final overrides: make 'Light' and main name red and restyle link buttons */
+.light-label, .name {
+  color: var(--demon-primary) !important;
+  text-shadow: 0 0 10px rgba(255,59,59,0.95), 0 0 28px rgba(255,138,0,0.18) !important;
+}
+.light-label {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.98;
+  transform: translateY(0);
+  animation: emberFlicker 6s infinite;
+}
+.name { position: relative; display: inline-block; }
+.name::after {
+  content: '';
+  position: absolute;
+  left: -60%; top: -10%; width: 40%; height: 120%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.25), rgba(255,255,255,0.02));
+  transform: skewX(-25deg) translateX(0);
+  transition: transform 0.8s cubic-bezier(.2,.8,.2,1);
+  pointer-events: none; mix-blend-mode: screen;
+}
+.name:hover::after { transform: skewX(-25deg) translateX(300%); }
+
+/* Demonic bloom around the main name and clearer label glow */
+.name {
+  z-index: 2;
+  font-family: "Cinzel", "Georgia", "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 2.0rem;
+  letter-spacing: 2px;
+  color: var(--demon-primary) !important;
+  filter: drop-shadow(0 0 14px rgba(200,40,40,0.48));
+  margin: 6px 0 0 0;
+  position: relative;
+}
+.name::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 200%; height: 110%;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(closest-side, rgba(255,60,60,0.16), rgba(255,120,40,0.06), transparent 55%);
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  opacity: 0.75;
+  z-index: 0;
+  pointer-events: none;
+  animation: demonicBloom 5.6s ease-in-out infinite;
+}
+.light-label { z-index: 3; filter: drop-shadow(0 0 12px rgba(255,80,80,0.6)); position: relative; }
+
+@keyframes demonicBloom {
+  0% { transform: translate(-50%,-50%) scale(0.98); opacity: 0.82; }
+  50% { transform: translate(-50%,-50%) scale(1.02); opacity: 1; }
+  100% { transform: translate(-50%,-50%) scale(0.98); opacity: 0.82; }
+}
+
+/* Responsive adjustments for desktop and mobile */
+@media (min-width: 900px) {
+  .avatar { width: 160px !important; height: 160px !important; }
+  .center-content { padding: 40px 60px !important; border-radius: 22px !important; max-width: 800px; }
+  .links { width: 100%; }
+  .links a { font-size: 1rem; padding: 10px; }
+  .light-label { font-size: 1.4rem !important; }
+  .owner-desc { font-size: 1.18rem !important; }
+  .tap-text { font-size: 2.8rem; padding: 22px 36px; }
+}
+
+@media (max-width: 520px) {
+  /* mobile sizing and touch targets */
+  .avatar { width: 96px !important; height: 96px !important; }
+  .center-content { padding: 12px 14px !important; border-radius: 12px !important; max-width: 92vw; }
+  .links { width: 100%; }
+  .links a { display: block; width: 100%; box-sizing: border-box; padding: 14px 14px; font-size: 1.05rem; border-radius: 10px; }
+  .light-label { font-size: 1.06rem !important; }
+  .owner-desc { font-size: 1.0rem !important; }
+  .about-list .role-title, .about-list .skills { font-size: 1.0rem !important; padding: 6px 10px !important; }
+  .tap-text { font-size: 1.6rem; padding: 14px 20px; }
+  .tap-sub { font-size: 0.9rem; }
+  .tap-overlay { padding: 12px; }
+  .music-player { display: none !important; }
+}
+
+/* small polish: make overlay obvious as button on touch devices */
+.tap-overlay { cursor: pointer; -webkit-tap-highlight-color: rgba(255,255,255,0.06); touch-action: manipulation; }
+
+/* Additional polish: typography, spacing, and hover glows */
+.center-content { max-width: 560px; margin: 0 auto; }
+.name { font-family: 'Cormorant Garamond', 'Cinzel', serif; font-size: 2.2rem; }
+.about-list { gap: 8px; }
+.about-list .role-title { background: rgba(12,10,10,0.32); backdrop-filter: blur(6px); padding: 8px 12px; border-radius: 10px; }
+.about-list .skills { background: rgba(12,10,10,0.24); backdrop-filter: blur(6px); padding: 6px 12px; border-radius: 8px; }
+.links a:hover { box-shadow: 0 18px 48px rgba(255,40,40,0.12), 0 6px 20px rgba(0,0,0,0.6); transform: translateY(-4px) scale(1.02); }
+
+
+/* Inverted, slightly clear link buttons: translucent white with red text */
+.links a {
+  /* transparent link buttons to avoid any glass/blur */
+  background: transparent !important;
+  color: #ff4d4d !important;
+  border: none !important;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  padding: 14px 18px;
+  font-family: "Cinzel", "Garamond", "Georgia", "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: none;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+.links a::before {
+  /* subtle white sheen for clarity */
+  content: '';
+  position: absolute; left: -42%; top: -8%; width: 42%; height: 116%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.18), rgba(255,255,255,0.04));
+  transform: skewX(-18deg) translateX(0);
+  transition: transform 0.55s cubic-bezier(.2,.8,.2,1);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  opacity: 0.09;
+}
+.links a::after { display: none; }
+.links a:hover::before { transform: skewX(-18deg) translateX(220%); opacity: 0.18; }
+.links a:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 22px 60px rgba(255,40,40,0.06), inset 0 0 18px rgba(255,255,255,0.03); border-color: rgba(0,0,0,0.6); }
+.links a:focus { outline: 2px solid rgba(255,40,40,0.12); outline-offset: 4px; color: #ff2b2b; }
+
+/* Remove visible focus outlines for icon links (user requested) */
+.link-icon-btn:focus,
+.link-icon-btn:focus-visible,
+.links a:focus,
+.links a:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name::after, .links a::before, .light-label { animation: none !important; transition: none !important; }
+}
+
+/* Global evil-red overrides and bloom effect */
+:root {
+  --evil-red: #ff2b2b;
+  --evil-bloom: rgba(255,60,60,0.22);
+}
+
+/* Make on-page text uniformly red for the demonic theme */
+body, body *:not(img):not(video):not(svg) {
+  color: var(--evil-red) !important;
+}
+
+/* Evil bloom text effect used across headings, labels and links */
+.evil-bloom-text {
+  text-shadow: 0 0 10px rgba(255,40,40,0.9), 0 0 28px rgba(255,110,40,0.12);
+  filter: drop-shadow(0 0 14px rgba(255,40,40,0.45));
+  position: relative;
+}
+
+/* Apply bloom to main text areas */
+.name, .light-label, .owner-desc, .links a, .music-hint, .music-status {
+  color: var(--evil-red) !important;
+  -webkit-text-fill-color: var(--evil-red) !important;
+}
+
+.name, .light-label, .owner-desc, .links a { 
+  /* stronger bloom on primary elements */
+  text-shadow: 0 0 12px rgba(255,50,50,0.95), 0 0 34px rgba(255,100,40,0.12);
+  filter: drop-shadow(0 0 16px rgba(255,50,50,0.4));
+}
+
+/* gentle pulsing bloom */
+@keyframes evilBloomPulse {
+  0% { text-shadow: 0 0 10px rgba(255,40,40,0.9), 0 0 24px rgba(255,90,30,0.10); }
+  50% { text-shadow: 0 0 18px rgba(255,60,60,1), 0 0 40px rgba(255,120,40,0.18); }
+  100% { text-shadow: 0 0 10px rgba(255,40,40,0.9), 0 0 24px rgba(255,90,30,0.10); }
+}
+
+.name, .light-label, .owner-desc { animation: evilBloomPulse 5.6s ease-in-out infinite; }
+
+/* Keep motion preferences respected */
+@media (prefers-reduced-motion: reduce) {
+  .name, .light-label, .owner-desc { animation: none !important; }
+}
+
+/* Ensure links preserve readable background contrast on hover */
+.links a:hover { color: var(--evil-red) !important; }
+
+/* Global dark outline for all on-page text for clear legibility */
+body {
+  text-shadow: 0 0 8px rgba(255, 40, 40, 0.3);
+}
+
+/* Slightly reduce stroke for small UI elements to avoid pixelation */
+.music-hint, .music-status, .links a { text-shadow: none; }
+
+/* Final typography overrides: smoother font + slightly larger sizes */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+}
+
+.light-label {
+  font-size: 1.12rem !important;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #ff2b2b !important; /* light neon red */
+  text-shadow: 0 0 8px rgba(255,43,43,0.95), 0 0 20px rgba(255,100,60,0.55), 0 0 40px rgba(180,30,30,0.18);
+  filter: drop-shadow(0 0 12px rgba(255,43,43,0.6));
+  animation: demonicGlow 3.2s ease-in-out infinite;
+}
+.owner-desc {
+  font-size: 1.04rem !important;
+  font-weight: 600;
+  padding: 8px 12px !important;
+  border-radius: 10px !important;
+}
+.about-list .role-title {
+  font-size: 1.06rem !important;
+  padding: 8px 12px !important;
+}
+
+/* Demonic neon effect for name / owner / about text */
+.name-wrap { position: relative; z-index: 4; }
+.light-label {
+  color: #ff4d4d !important;
+  text-shadow:
+    0 0 6px rgba(255,77,77,0.95),
+    0 0 18px rgba(255,95,60,0.7),
+    0 0 40px rgba(120,10,10,0.25);
+  transform: translateY(-2px);
+  animation: demonicGlow 3.6s ease-in-out infinite;
+}
+.owner-desc {
+  color: #ffbbaa !important;
+  text-shadow: 0 0 10px rgba(255,110,80,0.55), 0 0 26px rgba(200,40,40,0.12);
+  font-weight: 600;
+}
+.about-list .role-title, .about-list .skills {
+  color: #ffd6c8 !important;
+  text-shadow: 0 0 8px rgba(255,90,70,0.45);
+  font-weight: 600;
+}
+
+/* subtle red mist glow behind name area */
+.center-content::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: -8%;
+  width: 140%; height: 36%;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(255,40,40,0.12), rgba(255,120,40,0.05), transparent 60%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes demonicGlow {
+  0% { filter: drop-shadow(0 0 6px rgba(255,77,77,0.9)); opacity: 1; }
+  30% { filter: drop-shadow(0 0 10px rgba(255,95,60,0.9)); opacity: 0.96; }
+  60% { filter: drop-shadow(0 0 20px rgba(200,40,40,0.95)); opacity: 1; }
+  100% { filter: drop-shadow(0 0 6px rgba(255,77,77,0.9)); opacity: 1; }
+}
+
+@keyframes demonicFlicker {
+  0% { opacity: 1; }
+  5% { opacity: 0.88; }
+  10% { opacity: 1; }
+  20% { opacity: 0.92; }
+  40% { opacity: 1; }
+  100% { opacity: 1; }
+}
+.about-list .skills {
+  font-size: 1.02rem !important;
+  padding: 6px 12px !important;
+}
+.links a {
+  font-size: 1.08rem !important;
+  padding: 12px 22px !important;
+}
+
+/* Ensure readable smoothing on smaller devices */
+@media (max-width: 520px) {
+  .light-label { font-size: 1.0rem !important; }
+  .owner-desc, .about-list .skills { font-size: 0.95rem !important; }
+  .links a { font-size: 0.98rem !important; padding: 10px 14px !important; }
+}
+
+/* User request: make text slightly bigger and tighten vertical spacing */
+.avatar { margin-bottom: 6px !important; }
+.name-wrap { gap: 3px !important; }
+.about-list { gap: 3px !important; }
+.links { gap: 6px !important; }
+
+.light-label { font-size: 1.26rem !important; padding: 6px 8px !important; }
+.owner-desc { font-size: 1.18rem !important; padding: 6px 8px !important; }
+.about-list .role-title { font-size: 1.18rem !important; padding: 6px 10px !important; }
+.about-list .skills { font-size: 1.12rem !important; padding: 4px 8px !important; }
+.links a { font-size: 1.18rem !important; padding: 10px 18px !important; }
+
+/* Reduce outer panel padding slightly so items sit closer together */
+.center-content { padding: 18px 22px !important; }
+
+/* User request: remove shaded boxes behind icons and about text */
+.links .link-icon-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.links .link-icon-btn::before, .links .link-icon-btn::after { display: none !important; }
+
+.about-list .role-title,
+.about-list .skills,
+.owner-desc,
+.light-label,
+.about-me {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Strong mobile layout fixes: remove blur and place icon next to text on phones */
+@media (max-width: 520px) {
+  .center-content { padding: 14px !important; max-width: 92vw; width: 100%; box-sizing: border-box; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  .center-content::before { display: none !important; }
+  .avatar { width: 110px !important; height: 110px !important; margin: 0 auto 10px !important; display: block; }
+  .name-wrap { align-items: center !important; text-align: center !important; }
+  .light-label { margin: 0 !important; padding: 0 !important; }
+  .owner-desc { margin-top: 6px !important; padding: 0 !important; }
+  .about-list { gap: 6px !important; align-items: center; }
+  .about-list .role-title, .about-list .skills { padding: 0 !important; }
+
+  /* icons inline with labels */
+  .links { width: 100% !important; gap: 12px !important; align-items: center !important; justify-content: center !important; }
+  .link-icon-btn { width: 100% !important; flex-direction: column !important; padding: 8px 10px !important; justify-content: center !important; align-items: center !important; gap: 8px !important; }
+  .icon-circle { width: 56px !important; height: 56px !important; margin-right: 0 !important; margin-bottom: 6px !important; }
+  .icon-circle .link-icon { width: 36px !important; height: 36px !important; }
+  .link-label { font-size: 1.02rem !important; margin: 0 !important; margin-left: 0 !important; margin-top: 6px !important; text-align: center !important; }
+
+  /* remove frosted blur on link buttons for mobile */
+  .links a, .links .link-icon-btn { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: transparent !important; }
+}
+
+/* Override remaining red color rules — use demonic developer color or white */
+.about-list .role-title,
+.about-list .skills,
+.owner-desc,
+.light-label,
+.about-me {
+  color: #ffd6c8 !important; /* developer warm color */
+  text-shadow: 0 0 8px rgba(255,90,70,0.45) !important;
+}
+
+.links a, .links a:hover, .links a:focus {
+  color: #ffffff !important; /* ensure link anchors are white */
+  text-shadow: 0 0 8px rgba(255,90,70,0.12) !important;
+}
+
+.links a:focus { outline-color: rgba(255,90,70,0.12) !important; }
+
+/* Final mobile overrides (strong) — make each link a full-width row with icon on the left */
+@media (max-width: 520px) {
+  .links { flex-direction: column !important; gap: 10px !important; align-items: stretch !important; width: 100% !important; }
+  .link-icon-btn { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; width: 100% !important; padding: 10px 12px !important; gap: 10px !important; border-radius: 10px !important; background: transparent !important; }
+  .links a { display: block !important; width: 100% !important; box-sizing: border-box !important; }
+  .icon-circle { width: 56px !important; height: 56px !important; border-radius: 50% !important; margin: 0 0 8px 0 !important; }
+  .icon-circle .link-icon { width: 36px !important; height: 36px !important; }
+  .link-label { font-size: 1.0rem !important; margin: 0 !important; margin-left: 0 !important; text-align: center !important; color: #ffffff !important; }
+  .center-content { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+}
+
+/* Centering + remove blur stronger override for phones */
+@media (max-width: 520px) {
+  .center-content { margin: 0 auto !important; align-items: center !important; text-align: center !important; padding: 14px !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  .center-content::before { display: none !important; }
+  .links { align-items: center !important; justify-content: center !important; width: 100% !important; }
+  .links a, .links .link-icon-btn { background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none !important; }
+  .about-list .role-title, .about-list .skills, .owner-desc { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: transparent !important; }
+}
+
+/* Final: strongest mobile centering override to keep logo and text centered */
+@media (max-width: 520px) {
+  html, body { width: 100%; margin: 0; padding: 0; }
+  .ui { justify-content: center !important; align-items: flex-start !important; padding-top: 18px !important; }
+  .center-content {
+    width: min(92vw, 560px) !important;
+    max-width: 92vw !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    align-items: center !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    box-sizing: border-box !important;
+  }
+  .links { flex-direction: column !important; gap: 12px !important; align-items: center !important; justify-content: center !important; width: 100% !important; }
+  /* make each link a left-aligned row: icon on left, text on right */
+  .links { align-items: stretch !important; }
+  .links a, .link-icon-btn { margin-left: auto !important; margin-right: auto !important; text-align: left !important; }
+  .link-icon-btn { width: 92% !important; max-width: 420px !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; gap: 12px !important; padding: 10px 12px !important; }
+  .icon-circle { margin: 0 !important; width: 52px !important; height: 52px !important; border-radius: 8px !important; }
+  .icon-circle .link-icon { width: 32px !important; height: 32px !important; }
+  .link-label { text-align: left !important; margin-left: 10px !important; margin-top: 0 !important; flex: 1 1 auto !important; color: #ffffff !important; }
+}
+
+@media (max-width: 520px) {
+  .net-value { font-size: 1.3rem; }
+  .net-label { font-size: 0.95rem; }
+}
