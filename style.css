@@ -787,8 +787,13 @@ body {
     box-sizing: border-box !important;
   }
   .links { flex-direction: column !important; gap: 12px !important; align-items: center !important; justify-content: center !important; width: 100% !important; }
-  .links a, .link-icon-btn { margin-left: auto !important; margin-right: auto !important; text-align: center !important; }
-  .link-icon-btn { width: 92% !important; max-width: 420px !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; }
-  .icon-circle { margin: 0 0 8px 0 !important; }
-  .link-label { text-align: center !important; margin-left: 0 !important; }
+  /* make each link a left-aligned row: icon on left, text on right */
+  .links { align-items: stretch !important; }
+  .links a, .link-icon-btn { margin-left: auto !important; margin-right: auto !important; text-align: left !important; }
+  .link-icon-btn { width: 92% !important; max-width: 420px !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; gap: 12px !important; padding: 10px 12px !important; }
+  .icon-circle { margin: 0 !important; width: 52px !important; height: 52px !important; border-radius: 8px !important; }
+  .icon-circle .link-icon { width: 32px !important; height: 32px !important; }
+  .link-label { text-align: left !important; margin-left: 10px !important; margin-top: 0 !important; flex: 1 1 auto !important; color: #ffffff !important; }
 }
+
+
