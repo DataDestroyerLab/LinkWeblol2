@@ -74,6 +74,19 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    (function(){
+      try {
+        var ua = navigator.userAgent || '';
+        var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+        var isMobileUA = /Mobi|Android|iPhone|iPad|iPod|Mobile|Windows Phone/i.test(ua);
+        var smallViewport = Math.min(window.innerWidth, window.innerHeight) <= 900;
+        if (isMobileUA || (isTouch && smallViewport)) {
+          document.documentElement.classList.add('mobile-force');
+        }
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </body>
 </html>
 
