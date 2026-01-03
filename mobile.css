@@ -1,0 +1,58 @@
+/* Mobile-only overrides for Android + iPhone optimizations */
+/* Loaded only when viewport is <= 520px to avoid conflicts with desktop styles */
+@media (max-width: 520px) {
+  /* Keep UI visually centered but make link rows left-aligned inside the row */
+  .ui { justify-content: center !important; align-items: flex-start !important; padding-top: 14px !important; }
+  .center-content { width: min(92vw, 560px) !important; max-width: 92vw !important; margin: 0 auto !important; padding: 12px !important; box-sizing: border-box !important; text-align: center !important; }
+
+  /* Link list becomes full-width stack */
+  .links { display: flex !important; flex-direction: column !important; gap: 10px !important; align-items: stretch !important; width: 100% !important; }
+
+  /* Each link is a left-aligned row: icon at left, label to the right */
+  .link-icon-btn {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    width: 92% !important;
+    max-width: 480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 10px 12px !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+  }
+
+  .icon-circle {
+    flex: 0 0 52px !important;
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+  }
+  .icon-circle .link-icon { width: 32px !important; height: 32px !important; }
+
+  .link-label {
+    flex: 1 1 auto !important;
+    text-align: left !important;
+    margin: 0 !important;
+    margin-left: 10px !important;
+    font-size: 1.02rem !important;
+    color: #ffffff !important;
+  }
+
+  /* Ensure the avatar and name remain visually centered above links */
+  .avatar { margin: 0 auto 10px auto !important; display: block !important; }
+  .name-wrap { text-align: center !important; align-items: center !important; }
+
+  /* Prevent unexpected text-size adjustments on iOS/Android */
+  html, body { -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; }
+}
+
+/* Small utility: touch area increase for icons */
+.link-icon-btn .icon-circle { padding: 6px !important; }
