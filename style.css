@@ -506,6 +506,17 @@ body.mobile-bg {
     font-size: 0.82rem;
     padding: 4px 6px;
   }
+  .music-player {
+    inset: auto auto 10px 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-music {
+    min-width: 120px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -535,4 +546,5 @@ body.mobile-bg {
   75% { text-shadow: 0 0 22px rgba(255, 82, 82, 0.78), 0 0 46px rgba(225, 139, 255, 0.5); }
   100% { text-shadow: 0 0 16px rgba(255, 58, 58, 0.55), 0 0 34px rgba(225, 139, 255, 0.38); }
 }
+
 
