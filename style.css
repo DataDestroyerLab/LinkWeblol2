@@ -231,15 +231,15 @@ body.mobile-bg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 10px;
+  padding: 5px 9px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--frost);
   font-weight: 600;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
   font-family: 'Cinzel', 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #ffe6e6;
   line-height: 1.05;
 }
@@ -271,7 +271,7 @@ body.mobile-bg {
   font-family: 'Cormorant Garamond', serif;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
   margin-top: 4px;
   justify-content: flex-start;
 }
@@ -354,8 +354,8 @@ body.mobile-bg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   padding: 0;
   border-radius: 16px;
   text-decoration: none;
@@ -372,8 +372,8 @@ body.mobile-bg {
 }
 
 .icon-circle {
-  width: 80px;
-  height: 80px;
+  width: 76px;
+  height: 76px;
   border-radius: 12px;
   display: grid;
   place-items: center;
@@ -447,8 +447,8 @@ body.mobile-bg {
 /* Responsiveness */
 @media (max-width: 720px) {
   .center-card {
-    padding: 18px;
-    gap: 14px;
+    padding: 16px;
+    gap: 12px;
     background: rgba(10, 8, 14, 0.54);
     backdrop-filter: blur(6px) saturate(120%);
     -webkit-backdrop-filter: blur(6px) saturate(120%);
@@ -476,15 +476,15 @@ body.mobile-bg {
     height: 120px;
   }
   .owner-desc {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
   .link-icon-btn {
-    width: 100px;
-    height: 100px;
+    width: 92px;
+    height: 92px;
   }
   .icon-circle {
-    width: 78px;
-    height: 78px;
+    width: 72px;
+    height: 72px;
   }
   .skills {
     width: 100%;
@@ -497,10 +497,14 @@ body.mobile-bg {
   }
   .skill-pill {
     flex: 0 1 calc(50% - 8px);
-    min-width: 110px;
+    min-width: 100px;
     text-align: center;
     padding: 6px 8px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+  }
+  .bio-warning {
+    font-size: 0.82rem;
+    padding: 4px 6px;
   }
 }
 
