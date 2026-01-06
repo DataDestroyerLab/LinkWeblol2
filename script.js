@@ -2,7 +2,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const AUDIO_ID = 'musicAudio';
 	const analyticsKey = 'lw_analytics_v1';
-	const viewEndpoint = 'https://api.countapi.xyz/hit/datadestroyerlab.info/visits';
+	// CountAPI endpoints (namespaced to avoid dot issues) with fallback
+	const viewEndpoints = [
+		'https://api.countapi.xyz/update/datadestroyerlab_info/visits/?amount=1',
+		'https://api.countapi.xyz/hit/datadestroyerlab_info/visits',
+		'https://api.countapi.xyz/hit/datadestroyerlab.info/visits'
+	];
 
 	const audio = document.getElementById(AUDIO_ID);
 	const viewCountEl = document.getElementById('viewCount');
@@ -18,17 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Visitor counter via CountAPI (works on GitHub Pages + custom domain)
 	async function updateViewCount() {
 		if (!viewCountEl) return;
-		try {
-			const res = await fetch(viewEndpoint, { cache: 'no-cache' });
-			if (!res.ok) throw new Error(`HTTP ${res.status}`);
-			const data = await res.json();
-			if (typeof data.value === 'number') {
-				viewCountEl.textContent = data.value.toLocaleString();
-			} else {
-				viewCountEl.textContent = '—';
+		const localKey = 'lw_view_local_fallback';
+		for (const endpoint of viewEndpoints) {
+			try {
+				const res = await fetch(endpoint, { cache: 'no-store', mode: 'cors', referrerPolicy: 'no-referrer' });
+				if (!res.ok) throw new Error(`HTTP ${res.status}`);
+				const data = await res.json();
+				if (typeof data.value === 'number') {
+					viewCountEl.textContent = data.value.toLocaleString();
+					return;
+				}
+			} catch (err) {
+				console.warn('View counter fetch failed', endpoint, err);
 			}
+		}
+		// Local-only fallback so it never stays blank
+		try {
+			const current = parseInt(localStorage.getItem(localKey) || '0', 10) + 1;
+			localStorage.setItem(localKey, String(current));
+			viewCountEl.textContent = current.toLocaleString();
 		} catch (err) {
-			console.warn('View counter fetch failed', err);
 			viewCountEl.textContent = '--';
 		}
 	}
