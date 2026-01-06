@@ -177,8 +177,8 @@ body.mobile-bg {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
   min-width: 240px;
 }
 
@@ -242,11 +242,13 @@ body.mobile-bg {
   flex-direction: column;
   gap: 6px;
   margin-top: 6px;
+  align-items: center;
 }
 
 .role-title {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 5px 9px;
   border-radius: 10px;
@@ -290,7 +292,7 @@ body.mobile-bg {
   flex-wrap: wrap;
   gap: 4px;
   margin-top: 4px;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .skill-pill {
@@ -320,6 +322,7 @@ body.mobile-bg {
   font-size: 0.9rem;
   letter-spacing: 0.35px;
   line-height: 1.28;
+  align-items: center;
 }
 
 .bio-line {
@@ -430,8 +433,7 @@ body.mobile-bg {
   text-shadow: 0 0 10px rgba(255, 47, 85, 0.35);
 }
 
-/* Music player (hidden; audio only) */
-.music-player { display: none !important; }
+
 
 /* Responsiveness */
 @media (max-width: 820px) {
@@ -486,7 +488,7 @@ body.mobile-bg {
     padding: 8px;
   }
   .center-card {
-    width: 100vw;
+    width: calc(100vw - 16px);
     padding: clamp(14px, 4vw, 18px);
     gap: clamp(8px, 2vw, 12px);
     border-radius: 12px;
@@ -565,26 +567,26 @@ body.mobile-bg {
     margin-top: 2px;
   }
   .links {
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(8px, 2vw, 12px);
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: clamp(6px, 2vw, 10px);
     width: 100%;
   }
   .link-item {
-    gap: 6px;
+    gap: 5px;
   }
   .link-icon-btn {
-    width: clamp(70px, 16vw, 85px);
-    height: clamp(70px, 16vw, 85px);
+    width: clamp(54px, 13vw, 70px);
+    height: clamp(54px, 13vw, 70px);
     border-radius: 12px;
   }
   .icon-circle {
-    width: clamp(58px, 13vw, 68px);
-    height: clamp(58px, 13vw, 68px);
+    width: clamp(48px, 11vw, 58px);
+    height: clamp(48px, 11vw, 58px);
     border-radius: 10px;
   }
   .link-icon {
-    width: clamp(30px, 7vw, 38px);
-    height: clamp(30px, 7vw, 38px);
+    width: clamp(24px, 6vw, 32px);
+    height: clamp(24px, 6vw, 32px);
   }
   .link-label {
     font-size: 0.75rem;
@@ -594,10 +596,11 @@ body.mobile-bg {
 
 @media (max-width: 390px) {
   .center-card {
-    width: 100vw;
+    width: calc(100vw - 16px);
     padding: 12px;
     gap: 8px;
     border-radius: 8px;
+    max-height: calc(100vh - 60px);
   }
   .avatar-wrap {
     width: 90px;
