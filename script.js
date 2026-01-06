@@ -45,5 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		}, { once: true });
 	}
 
+	// Easter egg: Click avatar 5 times for secret effect
+	let avatarClickCount = 0;
+	const avatar = document.querySelector('.avatar');
+	if (avatar) {
+		avatar.style.cursor = 'pointer';
+		avatar.addEventListener('click', (e) => {
+			e.stopPropagation();
+			avatarClickCount++;
+			if (avatarClickCount === 5) {
+				const centerCard = document.querySelector('.center-card');
+				if (centerCard) {
+					centerCard.classList.add('easter-egg-active');
+					setTimeout(() => {
+						centerCard.classList.remove('easter-egg-active');
+						avatarClickCount = 0;
+					}, 2000);
+				}
+			}
+		});
+	}
+
 	// Note: volume slider and progress UI were removed — audio is only started once via the overlay tap.
 });
+
