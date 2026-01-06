@@ -2,8 +2,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const AUDIO_ID = 'musicAudio';
 	const analyticsKey = 'lw_analytics_v1';
-	// CountAPI endpoints (namespaced to avoid dot issues) with fallback
+	// View endpoints (multiple providers) with fallbacks
 	const viewEndpoints = [
+		'https://api.counterapi.dev/v1/datadestroyerlab/info/up',
 		'https://api.countapi.xyz/update/datadestroyerlab_info/visits/?amount=1',
 		'https://api.countapi.xyz/hit/datadestroyerlab_info/visits',
 		'https://api.countapi.xyz/hit/datadestroyerlab.info/visits'
@@ -29,8 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				const res = await fetch(endpoint, { cache: 'no-store', mode: 'cors', referrerPolicy: 'no-referrer' });
 				if (!res.ok) throw new Error(`HTTP ${res.status}`);
 				const data = await res.json();
-				if (typeof data.value === 'number') {
-					viewCountEl.textContent = data.value.toLocaleString();
+				const val = typeof data.value === 'number'
+					? data.value
+					: typeof data.count === 'number'
+						? data.count
+						: typeof data.result === 'number'
+							? data.result
+							: undefined;
+				if (typeof val === 'number' && !Number.isNaN(val)) {
+					viewCountEl.textContent = val.toLocaleString();
 					return;
 				}
 			} catch (err) {
