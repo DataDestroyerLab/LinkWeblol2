@@ -31,6 +31,10 @@
 <!-- CENTERED UI (hidden until user taps) -->
 <div class="ui hidden-on-start">
   <div class="center-card">
+    <div class="view-counter" aria-live="polite" aria-label="Lab views">
+      <span class="view-label" aria-hidden="true">👁</span>
+      <span class="view-value" id="viewCount">--</span>
+    </div>
     <div class="profile">
       <div class="avatar-wrap">
         <img src="assets/avatar.gif" class="avatar" alt="Avatar">
@@ -77,6 +81,12 @@
         <span class="link-label">Discord</span>
       </div>
       <div class="link-item">
+        <a href="https://www.instagram.com/datadestroyerlab?igsh=MXlsbG14Z3VkMTFm&utm_source=qr" target="_blank" class="link-icon-btn" aria-label="Instagram">
+          <span class="icon-circle"><img class="link-icon" src="assets/instagram.png" alt="Instagram"></span>
+        </a>
+        <span class="link-label">Instagram</span>
+      </div>
+      <div class="link-item">
         <a href="https://steamcommunity.com/id/NWALightYagami/" target="_blank" class="link-icon-btn" aria-label="Steam 1">
           <span class="icon-circle"><img class="link-icon" src="assets/steam.png" alt="Steam 1"></span>
         </a>
@@ -87,6 +97,23 @@
           <span class="icon-circle"><img class="link-icon" src="assets/steam.png" alt="Steam 2"></span>
         </a>
         <span class="link-label">Zetrex</span>
+      </div>
+    </div>
+
+    <div class="current-project" id="projectSection">
+      <div class="project-content">
+        <span class="project-emoji" id="projectEmoji">🔨</span>
+        <div class="project-info">
+          <div class="project-label">CURRENT PROJECT</div>
+          <div class="project-name" id="projectName">LinkWeb Lab</div>
+          <div class="project-status" id="projectStatus">Active Development</div>
+        </div>
+        <div class="project-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 75%;"></div>
+          </div>
+          <div class="progress-text" id="progressText">75%</div>
+        </div>
       </div>
     </div>
   </div>
